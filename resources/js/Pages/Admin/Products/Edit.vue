@@ -30,8 +30,8 @@
             <option :value="1">True</option>
           </select-input>
           <select-input v-model="form.category_id" :error="form.errors.category_id" class="pb-8 pr-6 w-full lg:w-1/2" label="Category">
-            <option :value="1">Cat 1</option>
-            <option :value="2">Cat 2</option>
+            <option value="">Select Category</option>
+            <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</option>
           </select-input>
           <file-input v-model="form.images" :error="form.errors.images" class="pb-8 pr-6 w-full lg:w-1/2" type="file" accept="image/*" label="Images" />
         </div>
@@ -51,6 +51,7 @@ export default {
   layout: Admin,
   props: {
     product: Object,
+    categories: Object,
   },
   remember: 'form',
   data() {

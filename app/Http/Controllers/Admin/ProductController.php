@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -26,7 +27,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Products/Create');
+        return Inertia::render('Admin/Products/Create', [
+            'categories' => Category::all()
+        ]);
     }
 
     public function store(StoreProductRequest $request)
@@ -57,7 +60,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         return Inertia::render('Admin/Products/Edit', [
-            'product' => $product
+            'categories' => Category::all(),
+            'product' => $product,
         ]);
     }
 

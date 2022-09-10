@@ -33,7 +33,6 @@ class CategoryController extends Controller
         $fields = Request::validate([
             'title' => ['required', 'max:50'],
             'description' => ['required'],
-            'parent_category' => ['required'],
             'published' => ['required'],
         ]);
 
@@ -56,7 +55,6 @@ class CategoryController extends Controller
         $fields = Request::validate([
             'title' => ['required', 'max:50'],
             'description' => ['required'],
-            'parent_category' => ['required'],
             'published' => ['required'],
         ]);
 

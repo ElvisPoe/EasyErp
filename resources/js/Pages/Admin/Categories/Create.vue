@@ -11,6 +11,7 @@
           <text-input v-model="form.title" :error="form.errors.title" class="pb-8 pr-6 w-full lg:w-1/2" label="Title" />
           <text-input v-model="form.description" :error="form.errors.description" class="pb-8 pr-6 w-full lg:w-1/2" label="Description" />
           <select-input v-model="form.parent_category" :error="form.errors.parent_category" class="pb-8 pr-6 w-full lg:w-1/2" label="Parent Category">
+            <option value="">Select category</option>
             <option :value="0">Cat 1</option>
             <option :value="1">Cat 2</option>
           </select-input>
