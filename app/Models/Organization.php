@@ -4,14 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Organization extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = $name;
+        $this->attributes['slug'] = Str::slug($name);
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
     public function scopeFilter($query, array $filters)

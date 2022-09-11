@@ -33,24 +33,9 @@
 </template>
 
 <script>
-import { Head, Link } from '@inertiajs/inertia-vue3'
 import Admin from '@/Layouts/Admin'
-import TextInput from '@/Shared/TextInput'
-import FileInput from '@/Shared/FileInput'
-import SelectInput from '@/Shared/SelectInput'
-import LoadingButton from '@/Shared/LoadingButton'
-import TrashedMessage from '@/Shared/TrashedMessage'
 
 export default {
-  components: {
-    FileInput,
-    Head,
-    Link,
-    LoadingButton,
-    SelectInput,
-    TextInput,
-    TrashedMessage,
-  },
   layout: Admin,
   props: {
     user: Object,

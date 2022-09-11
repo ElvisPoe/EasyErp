@@ -19,8 +19,9 @@ class CreateCategoriesTable extends Migration
             $table->string('title', 250);
             $table->longText('description')->nullable();
             $table->foreignId('parent_category')->nullable();
-            $table->boolean('published');
+            $table->boolean('published')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

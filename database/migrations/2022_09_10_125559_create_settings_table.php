@@ -20,6 +20,7 @@ class CreateSettingsTable extends Migration
             $table->string('woocommerce_api_key');
             $table->string('woocommerce_api_secret');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

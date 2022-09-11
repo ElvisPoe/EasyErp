@@ -28,7 +28,8 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Products/Create', [
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'parent_product' => request('parent_product')
         ]);
     }
 
@@ -42,13 +43,17 @@ class ProductController extends Controller
             'sale_price' => ['required'],
             'sku' => ['required'],
             'barcode' => ['required'],
+            'quantity' => ['required'],
             'weight' => ['required'],
             'has_variations' => ['required'],
-//            'images' => ['required'],
+            'images' => ['nullable'],
             'published' => ['required'],
             'category_id' => ['required'],
+            'attribute_label' => ['nullable'],
+            'attribute_value' => ['nullable'],
         ]);
 
+        $fields['parent_product'] = request('parent_product');
         $fields['organization_id'] = auth()->user()->organization->id;
 
         Product::create($fields);
@@ -62,12 +67,33 @@ class ProductController extends Controller
         return Inertia::render('Admin/Products/Edit', [
             'categories' => Category::all(),
             'product' => $product,
+            'variations' => Product::all()->where('parent_product', $product->id)
         ]);
     }
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        dd($request->all());
+        $fields = Request::validate([
+            'title' => ['required', 'max:50'],
+            'short_description' => ['required'],
+            'description' => ['required'],
+            'price' => ['required'],
+            'sale_price' => ['required'],
+            'sku' => ['required'],
+            'barcode' => ['required'],
+            'quantity' => ['required'],
+            'weight' => ['required'],
+            'has_variations' => ['required'],
+            'images' => ['nullable'],
+            'published' => ['required'],
+            'category_id' => ['required'],
+            'attribute_label' => ['nullable'],
+            'attribute_value' => ['nullable'],
+        ]);
+
+        $product->update($fields);
+
+        return Redirect::route('products.index')->with('success', 'Product updated.');
     }
 
     public function destroy(Product $product)

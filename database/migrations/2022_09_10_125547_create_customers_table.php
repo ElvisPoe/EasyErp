@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('last_name', 25);
             $table->string('email', 50)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -31,12 +31,12 @@
           </td>
           <td class="border-t">
             <Link class="flex items-center px-6 py-4" :href="`/admin/categories/${category.id}/edit`" tabindex="-1">
-              {{ category.parent_category }}
+              {{ !category.parent_category ? 'Yes' : 'No' }}
             </Link>
           </td>
           <td class="border-t">
             <Link class="flex items-center px-6 py-4" :href="`/admin/categories/${category.id}/edit`" tabindex="-1">
-              {{ category.published }}
+              {{ category.published ? 'Yes' : 'No' }}
             </Link>
           </td>
           <td class="w-px border-t">

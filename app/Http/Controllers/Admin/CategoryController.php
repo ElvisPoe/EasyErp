@@ -25,7 +25,10 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Categories/Create');
+        return Inertia::render('Admin/Categories/Create', [
+            'categories' => Category::all(),
+            'parentCategory' => request('parentCategory')
+        ]);
     }
 
     public function store(StoreCategoryRequest $request)
@@ -36,6 +39,7 @@ class CategoryController extends Controller
             'published' => ['required'],
         ]);
 
+        $fields['parent_category'] = $request->parent_category;
         $fields['organization_id'] = auth()->user()->organization->id;
 
         Category::create($fields);
@@ -46,7 +50,9 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return Inertia::render('Admin/Categories/Edit', [
-            'category' => $category
+            'category' => $category,
+            'categories' => Category::all(),
+            'childrenCategories' => Category::all()->where('parent_category', $category->id)
         ]);
     }
 
@@ -57,6 +63,8 @@ class CategoryController extends Controller
             'description' => ['required'],
             'published' => ['required'],
         ]);
+
+        $category['parent_category'] = $request->parent_category;
 
         $category->update($fields);
 

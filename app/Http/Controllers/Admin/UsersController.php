@@ -25,7 +25,7 @@ class UsersController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'role' => $user->role,
-                    'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 40, 'h' => 40, 'fit' => 'crop']) : null,
+                    'photo' => $user->photo ? URL::route('image', ['path' => $user->photo, 'w' => 40, 'h' => 40, 'fit' => 'crop']) : null,
                     'deleted_at' => $user->deleted_at,
                 ]),
         ]);
@@ -61,7 +61,7 @@ class UsersController extends Controller
                 'last_name' => $user->last_name,
                 'email' => $user->email,
                 'role' => $user->role,
-                'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
+                'photo' => $user->photo ? URL::route('image', ['path' => $user->photo, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
                 'deleted_at' => $user->deleted_at,
             ],
         ]);
@@ -81,7 +81,7 @@ class UsersController extends Controller
         $user->update($fields);
 
         if (Request::file('photo')) {
-            $user->update(['photo_path' => Request::file('photo')->store('users')]);
+            $user->update(['photo' => Request::file('photo')->store('users')]);
         }
 
         if (Request::get('password')) {

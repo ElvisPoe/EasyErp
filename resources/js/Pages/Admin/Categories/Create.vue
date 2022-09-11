@@ -10,10 +10,9 @@
         <div class="flex flex-wrap -mb-8 -mr-6 p-8">
           <text-input v-model="form.title" :error="form.errors.title" class="pb-8 pr-6 w-full lg:w-1/2" label="Title" />
           <text-input v-model="form.description" :error="form.errors.description" class="pb-8 pr-6 w-full lg:w-1/2" label="Description" />
-          <select-input v-model="form.parent_category" :error="form.errors.parent_category" class="pb-8 pr-6 w-full lg:w-1/2" label="Parent Category">
-            <option value="">Select category</option>
-            <option :value="0">Cat 1</option>
-            <option :value="1">Cat 2</option>
+          <select-input v-model="form.parent_category" :error="form.errors.parent_category" class="pb-8 pr-6 w-full lg:w-1/2" label="Parent category">
+            <option value="">Select Category</option>
+            <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</option>
           </select-input>
           <select-input v-model="form.published" :error="form.errors.published" class="pb-8 pr-6 w-full lg:w-1/2" label="Published">
             <option :value="0">False</option>
@@ -33,13 +32,17 @@ import Admin from '@/Layouts/Admin'
 
 export default {
   layout: Admin,
+  props: {
+    categories: Object,
+    parentCategory: String
+  },
   remember: 'form',
   data() {
     return {
       form: this.$inertia.form({
         title: '',
         description: '',
-        parent_category: '',
+        parent_category: this.parentCategory,
         published: 0,
       }),
     }

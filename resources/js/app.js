@@ -9,6 +9,7 @@ import TextInput from '@/Shared/TextInput'
 import SelectInput from "@/Shared/SelectInput";
 import FileInput from "@/Shared/FileInput";
 import LoadingButton from '@/Shared/LoadingButton'
+import TrashedMessage from "@/Shared/TrashedMessage";
 
 InertiaProgress.init({
     showSpinner: true,
@@ -36,6 +37,7 @@ createInertiaApp({
             .component('SelectInput', SelectInput)
             .component('FileInput', FileInput)
             .component('LoadingButton', LoadingButton)
+            .component('TrashedMessage', TrashedMessage)
             .mount(el)
     },
 
