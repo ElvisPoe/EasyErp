@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateProductVariationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
-            $table->integer('organization_id');
+            $table->foreignId('product')->nullable();
             $table->string('title', 250);
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
@@ -25,10 +25,11 @@ class CreateProductsTable extends Migration
             $table->string('barcode', 50)->nullable();
             $table->integer('quantity')->default(0);
             $table->float('weight')->nullable();
-            $table->boolean('has_variations')->default(false);
             $table->text('images')->nullable();
             $table->boolean('published')->default(false);
-            $table->foreignId('category_id')->nullable();
+            $table->foreignId('attribute_id');
+            $table->foreignId('attribute_value_id');
+            $table->boolean('published')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -41,6 +42,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_variations');
     }
 }

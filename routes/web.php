@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\AttributeValueController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -35,6 +37,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('customers/{customer}/restore', [CustomerController::class, 'restore'])->name('customer.restore');
     Route::resource('products', ProductController::class);
     Route::put('products/{product}/restore', [ProductController::class, 'restore'])->name('product.restore');
+    Route::resource('attributes', AttributeController::class);
+    Route::put('attributes/{attribute}/restore', [AttributeController::class, 'restore'])->name('attribute.restore');
+    Route::resource('attributeValues', AttributeValueController::class);
+    Route::put('attributeValues/{attributeValue}/restore', [AttributeValueController::class, 'restore'])->name('attributeValue.restore');
     Route::resource('categories', CategoryController::class);
     Route::put('categories/{category}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     Route::resource('users', UsersController::class);

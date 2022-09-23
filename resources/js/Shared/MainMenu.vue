@@ -25,6 +25,12 @@
       </Link>
     </div>
     <div class="mb-4">
+      <Link class="group flex items-center py-3" href="/admin/attributes">
+        <icon name="products" class="mr-2 w-4 h-4" :class="isUrl('attributes') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isUrl('attributes') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Attributes</div>
+      </Link>
+    </div>
+    <div class="mb-4">
       <Link class="group flex items-center py-3" href="/admin/categories">
         <icon name="categories" class="mr-2 w-4 h-4" :class="isUrl('category') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('category') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Categories</div>
