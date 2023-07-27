@@ -29,7 +29,6 @@ class CreateProductVariationsTable extends Migration
             $table->boolean('published')->default(false);
             $table->foreignId('attribute_id');
             $table->foreignId('attribute_value_id');
-            $table->boolean('published')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
