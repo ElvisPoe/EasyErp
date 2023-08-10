@@ -5,7 +5,7 @@
 - An ERP System that allows you to manage your eshop products, categories, customers and orders.
 - Every Action is sent to the e-shop that is to be managed. E.g. WordPress
 - Dashboard with data about sales, customers, products etc.
-- Every user has access to a specific organisation.
+- Every user has access to a specific organization.
 - Filtering and Search
 - SPA with Inertia
 ## ToDo
